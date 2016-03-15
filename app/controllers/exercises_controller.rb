@@ -7,6 +7,20 @@ class ExercisesController < ApplicationController
     @exercises = current_user.exercises.all
   end
   
+  def edit
+    
+  end
+  
+  def update
+    if @exercise.update(exercise_params)
+      flash[:success] = "Exercise has been updated"
+      redirect_to [current_user, @exercise]
+    else
+      flash[:danger] = "Exercise has not been updated"
+      render :edit
+    end
+  end
+  
   def new
     @exercise = current_user.exercises.new
   end
